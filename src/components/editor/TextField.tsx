@@ -12,9 +12,13 @@ export const TextField = () => {
   if (selectFile != currentSelectFile) {
     setCurrentSelectFile(selectFile)
     const asyncProcess = async () => {
-      const context = await readTextFile(selectFile)
+      try {
+        const context = await readTextFile(selectFile)
 
-      setText(context)
+        setText(context)
+      } catch (error) {
+        console.log(error)
+      }
     }
     asyncProcess()
   }
